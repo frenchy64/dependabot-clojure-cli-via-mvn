@@ -34,7 +34,7 @@ jobs:
       - name: Install clojure tools
         uses: DeLaGuardo/setup-clojure@4.0
         with:
-          lein: 2.9.8
+          cli: 1.10.3.1087
       - name: Setup Babashka
         run: bash < <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install)
       - name: Check dependabot is in sync with project.clj
@@ -63,5 +63,5 @@ jobs:
       - name: Install clojure tools
         uses: DeLaGuardo/setup-clojure@4.0
         with:
-          lein: 2.9.8
-      - run: lein test
+          cli: 1.10.3.1087
+      - run: clojure -Xtest
