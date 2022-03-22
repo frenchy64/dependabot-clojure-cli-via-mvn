@@ -1,4 +1,4 @@
-# Leiningen Dependabot support via Maven
+# Clojure CLI Dependabot support via Maven
 
 Unfortunately, as of March 2022, plans have stalled to officially support Clojure in Dependabot.
 
@@ -16,11 +16,11 @@ in that spirit let's lower expectations slightly and access dependabot via Maven
 ## Overview
 
 This repository demonstrates how you use dependabot to help
-manage Leiningen project dependencies. The basic idea is to use `lein pom`
+manage Clojure CLI project dependencies. The basic idea is to use `clj -Spom`
 to generate a `pom.xml` for dependabot to inspect.
 
 The downside is that the PR's sent by dependabot are not mergable, as they
-modify the `pom.xml` instead of the `project.clj`.
+modify the `pom.xml` instead of the `deps.edn`.
 To compensate, this setup will make GitHub Actions fail in dependabot's PRs until you fix them yourself.
 
 This way, you get many of the benefits of dependabot (rich diffs, security notices), with a few guard rails
@@ -28,7 +28,7 @@ to prevent otherwise easy-to-make mistakes that come with this approach.
 
 ## Usage
 
-Assuming you have a Leiningen project in a git repo ready to go, adding dependabot support is a matter of
+Assuming you have a Clojure CLI project in a git repo ready to go, adding dependabot support is a matter of
 copying some files and code from this repo.
 
 1. Copy [.github/dependabot.yml](.github/dependabot.yml) to your repo. Notice that we've configured the `dependabot` directory as a Maven project--this is where our fake Maven project will live.
@@ -41,7 +41,7 @@ copying some files and code from this repo.
    - see the end of the `setup` job in [.github/workflows/build.yml](.github/workflows/build.yml) for an example, which uses a babashka installer
 5. Commit and push.
 
-CI failures will now force you to keep [project.clj](project.clj) and [dependabot/pom.xml](dependabot/pom.xml) synchronized (via [script/sync-dependabot](script/sync-dependabot)).
+CI failures will now force you to keep [deps.edn](deps.edn) and [dependabot/pom.xml](dependabot/pom.xml) synchronized (via [script/sync-dependabot](script/sync-dependabot)).
 
 Finally, to activate dependabot on your repo, follow [these](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates#enabling-or-disabling-dependabot-security-updates-for-an-individual-repository) instructions. In short, go to `https://github.com/<USER>/<REPO>/settings/security_analysis` and activate
 the security and analysis tools you are interested in. You must be an admin--if you're preparing a pull-request for a repo that you're not an admin of, you can first fork the repo to test out dependabot on your own fork, and then I suggest asking the maintainer to enable dependabot themselves.
@@ -57,8 +57,8 @@ Most of the time it will be easy to update the dependabot PR directly from GitHu
 1. At the top of the dependabot PR, it will show a link to the `tree` view of the upstream branch. Click on it.
   - eg., in [this](https://github.com/frenchy64/dependabot-lein-via-mvn/pull/2) PR, click on the link at the end of `dependabot wants to merge 2 commits into main from dependabot/maven/dependabot/org.clojure-clojure-1.10.3`
 2. You should be at (for example) `https://github.com/frenchy64/dependabot-lein-via-mvn/tree/dependabot/maven/dependabot/org.clojure-clojure-1.10.3`.
-3. To edit the file, go to `https://github.com/frenchy64/dependabot-lein-via-mvn/edit/dependabot/maven/dependabot/org.clojure-clojure-1.10.3/project.clj`.
+3. To edit the file, go to `https://github.com/frenchy64/dependabot-lein-via-mvn/edit/dependabot/maven/dependabot/org.clojure-clojure-1.10.3/deps.edn`.
   - some ways to do this:
-    1. press `t` and type `project.clj` and press enter, then click the "Edit this file" button, or
-    2. change `tree` to `edit` and add `/project.clj` to the end of the URL.
-4. Now make the `project.clj` reflect the new `dependabot/pom.xml` version, and press `Commit changes` at the bottom of the page to commit directly to the branch.
+    1. press `t` and type `deps.edn` and press enter, then click the "Edit this file" button, or
+    2. change `tree` to `edit` and add `/deps.edn` to the end of the URL.
+4. Now make the `deps.edn` reflect the new `dependabot/pom.xml` version, and press `Commit changes` at the bottom of the page to commit directly to the branch.
