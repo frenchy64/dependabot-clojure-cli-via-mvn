@@ -4,6 +4,6 @@ set -e
 
 SHA=$(git rev-parse HEAD)
 
-clj -Spom
+clojure -Spom
 mkdir -p dependabot
 mv pom.xml dependabot
