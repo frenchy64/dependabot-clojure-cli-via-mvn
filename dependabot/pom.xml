@@ -35,7 +35,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>java.jdbc</artifactId>
-      <version>0.7.11</version>
+      <version>0.7.12</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
