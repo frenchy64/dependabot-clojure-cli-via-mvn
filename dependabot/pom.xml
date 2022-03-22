@@ -14,8 +14,33 @@
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
+      <artifactId>tools.analyzer.jvm</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
       <artifactId>core.logic</artifactId>
       <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>clojurescript</artifactId>
+      <version>1.10.914</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>data.xml</artifactId>
+      <version>0.0.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>java.jdbc</artifactId>
+      <version>0.7.11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>core.memoize</artifactId>
+      <version>1.0.253</version>
     </dependency>
   </dependencies>
   <build>
