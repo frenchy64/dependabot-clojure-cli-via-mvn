@@ -32,7 +32,7 @@ jobs:
           distribution: 'temurin'
           java-version: 11
       - name: Install clojure tools
-        uses: DeLaGuardo/setup-clojure@4.0
+        uses: DeLaGuardo/setup-clojure@9.3
         with:
           cli: 1.10.3.1087
       - name: Check dependabot is in sync with project.clj
@@ -59,7 +59,7 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
       - name: Install clojure tools
-        uses: DeLaGuardo/setup-clojure@4.0
+        uses: DeLaGuardo/setup-clojure@9.3
         with:
           cli: 1.10.3.1087
       - run: clojure -Xtest
